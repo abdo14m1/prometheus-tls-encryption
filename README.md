@@ -3,7 +3,7 @@
 #### Create a `self signed certificate` and a `Hashed Password`
 ```bash
 openssl req   -x509   -newkey rsa:4096   -nodes   -keyout node_exporter.key   -out node_exporter.crt
-openssl passwd -6 'password'
+htpasswd -nbB farag password
 ```
 #### Create a configuration file for the node exporter
 ```bash
@@ -14,7 +14,7 @@ tls_server_config:
   cert_file: node_exporter.crt
   key_file: node_exporter.key
 basic_auth_users:
-  farag: $6$sSEwTKaDimZpCyEK$mhNuoHl94SUz0VrQamqzjG0PaVkNLHYJ6hKPAvps/3FBCnFqEJJCdL5OQ5GZ8OcJMtggDPq6P/aNZAC10Psxj0
+  farag:$2y$05$br2UJv0wAnSmuDcPr/myBONvKOtAcKpYspKFKpz71RuS4BOVTkZ7
 EOF
 chown -R node_exporter:node_exporter /etc/node_exporter/
 ```
