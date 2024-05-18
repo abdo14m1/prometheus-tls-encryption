@@ -14,7 +14,7 @@ tls_server_config:
   cert_file: node_exporter.crt
   key_file: node_exporter.key
 basic_auth_users:
-  farag:$2y$05$br2UJv0wAnSmuDcPr/myBONvKOtAcKpYspKFKpz71RuS4BOVTkZ7
+  prometheus:$2y$05$br2UJv0wAnSmuDcPr/myBONvKOtAcKpYspKFKpz71RuS4BOVTkZ7
 EOF
 chown -R node_exporter:node_exporter /etc/node_exporter/
 ```
@@ -65,7 +65,7 @@ scrape_configs:
       - targets: ['localhost:9090']
   - job_name: 'node'
     basic_auth:
-      username: farag
+      username: prometheus
       password: password
     scheme: 'https'
     tls_config:
